@@ -16,7 +16,12 @@
     </nav>
     <ul>
         <% for (let i=0; i<categoryList.length; i++) { %>
-            <li><%= categoryList[i].name %></li>
+            <li>
+                <div>
+                    <h2><%= categoryList[i].name %></h2>
+                    <a href="/edit-category/<%= categoryList[i].id %>">Edit</a>
+                </div>
+            </li>
         <% } %>
     </ul>
 </body>

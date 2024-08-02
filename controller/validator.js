@@ -1,7 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const { isCategoryNameAlreadyPresent } = require('../model/category');
 
-const addCategoryFormValidation = [
+const categoryNameValidation = [
     body('category-name')
     .trim()
     .notEmpty()
@@ -28,6 +28,6 @@ const validate = async (req, res, next) => {
 }
 
 module.exports = {
-    addCategoryFormValidation,
+    categoryNameValidation,
     validate
 }

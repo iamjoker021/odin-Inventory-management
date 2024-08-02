@@ -9,6 +9,12 @@ const addCategoryForm = (req, res) => {
     res.render('add-category');
 }
 
+const editCategoryForm = async (req, res) => {
+    const categoryId = req.params.id;
+    const category = await categoryModel.getCategoryById(categoryId);
+    res.render('edit-category', {category: category});
+}
+
 const createCategory = async (req, res) => {
     const { 'category-name': newCategory } = req.body;
     await categoryModel.addNewCategory(newCategory);
@@ -16,13 +22,14 @@ const createCategory = async (req, res) => {
 }
 
 const editCategory = async (req, res) => {
-    const { 'categroy-name': newCategroyName } = req.body;
-    await categoryModel.updateCategroy(newCategroyName);
+    const categoryId = req.params.id;
+    const { 'category-name': newCategoryName } = req.body;
+    await categoryModel.updateCategroy(categoryId, newCategoryName);
     res.redirect('/');
 }
 
 const deleteCategory = async (req, res) => {
-    const { 'categroy-id': categriyId } = req.body;
+    const { 'category-id': categriyId } = req.body;
     await categoryModel.deleteCategory(categriyId);
     res.redirect('/');
 }
@@ -32,5 +39,6 @@ module.exports = {
     createCategory,
     editCategory,
     deleteCategory,
-    addCategoryForm
+    addCategoryForm,
+    editCategoryForm
 }

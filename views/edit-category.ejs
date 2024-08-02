@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODIN | Inventory Management App</title>
+</head>
+<body>
+    <h1>Inventory Management App</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+    <form action="/edit-category/<%= category.id %>" method="POST">
+        <label for="">Category ID: </label>
+        <input type="number" name="category-id" value="<%= category.id %>" disabled>
+        <br>
+        <label for="">Current Category Name: </label>
+        <input type="text" name="old-category" value="<%= category.name %>" disabled>
+        <br>
+        <label for="category-name">New Category Name: </label>
+        <input type="text" name="category-name" id="category-name">
+        <br>
+        <button type="Sumbit">Update Category Name</button>
+    </form>
+</body>
+</html>
