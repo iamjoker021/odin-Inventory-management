@@ -29,8 +29,8 @@ const editCategory = async (req, res) => {
 }
 
 const deleteCategory = async (req, res) => {
-    const { 'category-id': categriyId } = req.body;
-    await categoryModel.deleteCategory(categriyId);
+    const categoryId = req.query.id;
+    await categoryModel.deleteCategory(categoryId);
     res.redirect('/');
 }
 

@@ -20,6 +20,7 @@
                 <div>
                     <h2><%= categoryList[i].name %></h2>
                     <a href="/edit-category/<%= categoryList[i].id %>">Edit</a>
+                    <a href="/delete-category?id=<%= categoryList[i].id %>">Delete</a>
                 </div>
             </li>
         <% } %>

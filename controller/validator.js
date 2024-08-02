@@ -1,5 +1,5 @@
-const { body, validationResult } = require('express-validator');
-const { isCategoryNameAlreadyPresent } = require('../model/category');
+const { query, body, validationResult } = require('express-validator');
+const { isCategoryNameAlreadyPresent, isCategroyContainItems } = require('../model/category');
 
 const categoryNameValidation = [
     body('category-name')
@@ -10,6 +10,19 @@ const categoryNameValidation = [
     .custom(async (category) => {
         if(await isCategoryNameAlreadyPresent(category)) {
             throw new Error ('Category Name is already present');
+        }
+    })
+]
+
+const categoryDeleteValidation = [
+    query('id')
+    .trim()
+    .notEmpty()
+    .withMessage('Category Id should not be empty')
+    .escape()
+    .custom(async (category) => {
+        if(await isCategroyContainItems(category)) {
+            throw new Error ('Category should be Empty to delete');
         }
     })
 ]
@@ -29,5 +42,6 @@ const validate = async (req, res, next) => {
 
 module.exports = {
     categoryNameValidation,
+    categoryDeleteValidation,
     validate
 }

@@ -15,6 +15,11 @@ const isCategoryNameAlreadyPresent = async (categoryName) => {
     return rows.length > 0;
 }
 
+const isCategroyContainItems = async (categoryId) => {
+    const { rows } = await pool.query('SELECT 1 FROM item where category_id = $1;', [categoryId]);
+    return rows.length > 0;
+}
+
 const addNewCategory = async (categoryName) => {
     await pool.query('INSERT INTO category (name) VALUES ($1)', [categoryName])
 }
@@ -33,5 +38,6 @@ module.exports = {
     addNewCategory,
     updateCategroy,
     deleteCategory,
-    isCategoryNameAlreadyPresent
+    isCategoryNameAlreadyPresent,
+    isCategroyContainItems
 }
