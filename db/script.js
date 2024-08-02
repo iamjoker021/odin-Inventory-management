@@ -41,9 +41,11 @@ async function initalizeData() {
       await client.query('BEGIN');
       await client.query(SQL);
       await client.query('COMMIT');
+      console.log('Data added success');
     }
     catch (e) {
       await client.query('ROLLBACK');
+      console.log('Data added failed');
       throw e;
     }
     finally {
