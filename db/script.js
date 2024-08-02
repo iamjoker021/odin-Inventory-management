@@ -1,5 +1,4 @@
-const dotenv = require('dotenv').config();
-const { Client } = require("pg");
+const pool = require('../db/pool');
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS category (
@@ -37,11 +36,19 @@ INSERT INTO item (name, price, category_id) VALUES
 
 async function initalizeData() {
     console.log("seeding...");
-    const client = new Client({ connectionString: process.env.CONN_STR, });
-    await client.connect();
-    await client.query(SQL);
-    await client.end();
-    console.log("done");
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      await client.query(SQL);
+      await client.query('COMMIT');
+    }
+    catch (e) {
+      await client.query('ROLLBACK');
+      throw e;
+    }
+    finally {
+      client.release();
+    }
 }
 
 initalizeData();
