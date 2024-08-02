@@ -6,6 +6,9 @@ const express = require('express');
 const app = express();
 const categoryRouter = require('./router/categoryRouter');
 
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
