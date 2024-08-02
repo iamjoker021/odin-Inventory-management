@@ -5,8 +5,8 @@ const getAllCategory = async () => {
     return rows;
 }
 
-const addNewCategory = async (categroyName) => {
-    await pool.query('INSERT INTO category VALUES ($1)', [categroyName])
+const addNewCategory = async (categoryName) => {
+    await pool.query('INSERT INTO category (name) VALUES ($1)', [categoryName])
 }
 
 const updateCategroy = async (categroyId, newCategoryName) => {

@@ -10,7 +10,7 @@ const addCategoryForm = (req, res) => {
 }
 
 const createCategory = async (req, res) => {
-    const { 'categroy-name': newCategory } = req.body;
+    const { 'category-name': newCategory } = req.body;
     await categoryModel.addNewCategory(newCategory);
     res.redirect('/');
 }
