@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1>Inventory Management App</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add">Add New Category</a></li>
+        </ul>
+    </nav>
     <ul>
         <% for (let i=0; i<categoryList.length; i++) { %>
             <li><%= categoryList[i].name %></li>
