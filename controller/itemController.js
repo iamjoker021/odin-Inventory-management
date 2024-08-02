@@ -13,15 +13,30 @@ const addItemPage = (req, res) => {
     res.render('add-item', {category: {id: categoryId}});
 }
 
+const editItemPage = async (req, res) => {
+    const categoryId = req.params.id;
+    const itemid = req.params.itemid;
+    const item = await itemModel.getItemById(itemid);
+    res.render('edit-item', { category: {id: categoryId}, item: item });
+}
+
 const addItem = async (req, res) => {
     const categoryId = req.params.id;
     const { 'item-name': itemName, 'item-price': itemPrice } = req.body;
-    await itemModel.addNewItem(itemName, itemPrice, categoryId);
+    await itemModel.addNewItem(itemName, itemPrice);
     res.redirect(`/category/${categoryId}`);
+}
+
+const editItem = async (req, res) => {
+    const itemId = req.params.id;
+    const { 'item-name': itemName, 'item-price': itemPrice } = req.body;
+    await itemModel.editItem(itemId, itemName, parseFloat(itemPrice));
 }
 
 module.exports = {
     getAllItem,
     addItem,
-    addItemPage
+    addItemPage,
+    editItemPage,
+    editItem
 }
