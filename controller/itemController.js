@@ -28,9 +28,18 @@ const addItem = async (req, res) => {
 }
 
 const editItem = async (req, res) => {
-    const itemId = req.params.id;
+    const categoryId = req.params.id;
+    const itemId = req.params.itemid;
     const { 'item-name': itemName, 'item-price': itemPrice } = req.body;
     await itemModel.editItem(itemId, itemName, parseFloat(itemPrice));
+    res.redirect(`/category/${categoryId}`);
+}
+
+const deleteItem = async (req, res) => {
+    const categoryId = req.params.id;
+    const itemId = req.query.id;
+    await itemModel.deleteItem(itemId);
+    res.redirect(`/category/${categoryId}`);
 }
 
 module.exports = {
@@ -38,5 +47,6 @@ module.exports = {
     addItem,
     addItemPage,
     editItemPage,
-    editItem
+    editItem,
+    deleteItem
 }

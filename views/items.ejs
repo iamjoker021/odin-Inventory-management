@@ -21,7 +21,7 @@
                     <h2><%= itemList[i].name %></h2>
                     <p>Price: <%= itemList[i].price %></p>
                     <a href="/category/<%= category.id %>/edit-item/<%= itemList[i].id %>">Edit</a>
-                    <a href="/delete-category?id=<%= itemList[i].id %>">Delete</a>
+                    <a href="/category/<%= category.id %>/delete-item?id=<%= itemList[i].id %>">Delete</a>
                 </div>
             </li>
         <% } %>

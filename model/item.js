@@ -18,9 +18,14 @@ const editItem = async (itemId, itemName, itemPrice) => {
     await pool.query('UPDATE item SET name = $2, price = $3 WHERE id = $1;', [itemId, itemName, itemPrice])
 }
 
+const deleteItem = async (itemId) => {
+    await pool.query('DELETE FROM item WHERE id = $1;', [itemId])
+}
+
 module.exports = {
     getAllItemByCategory,
     addNewItem,
     getItemById,
-    editItem
+    editItem,
+    deleteItem
 }
