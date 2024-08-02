@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODIN | Inventory Management App</title>
+</head>
+<body>
+    <h1>Inventory Management App</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add-item">Add New Item</a></li>
+        </ul>
+    </nav>
+    <h2><%= category %></h2>
+    <ul>
+        <% for (let i=0; i<itemList.length; i++) { %>
+            <li>
+                <div>
+                    <h2><%= itemList[i].name %></h2>
+                    <p>Price: <%= itemList[i].price %></p>
+                    <a href="/edit-category/<%= itemList[i].id %>">Edit</a>
+                    <a href="/delete-category?id=<%= itemList[i].id %>">Delete</a>
+                </div>
+            </li>
+        <% } %>
+    </ul>
+</body>
+</html>

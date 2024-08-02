@@ -17,11 +17,13 @@
     <ul>
         <% for (let i=0; i<categoryList.length; i++) { %>
             <li>
-                <div>
-                    <h2><%= categoryList[i].name %></h2>
-                    <a href="/edit-category/<%= categoryList[i].id %>">Edit</a>
-                    <a href="/delete-category?id=<%= categoryList[i].id %>">Delete</a>
-                </div>
+                <a href="/category/<%= categoryList[i].id %>">
+                    <div>
+                        <h2><%= categoryList[i].name %></h2>
+                        <a href="/edit-category/<%= categoryList[i].id %>">Edit</a>
+                        <a href="/delete-category?id=<%= categoryList[i].id %>">Delete</a>
+                    </div>
+                </a>
             </li>
         <% } %>
     </ul>
