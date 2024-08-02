@@ -11,13 +11,13 @@
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/add-category">Add New Category</a></li>
+            <li><a href="/add">Add New Category</a></li>
         </ul>
     </nav>
-    <ul>
-        <% for (let i=0; i<categoryList.length; i++) { %>
-            <li><%= categoryList[i].name %></li>
-        <% } %>
-    </ul>
+    <form action="/add-category" method="POST">
+        <label for="category-name">Categroy Name: </label>
+        <input type="text" name="category-name" id="category-name">
+        <button type="Sumbit">Add New Categroy</button>
+    </form>
 </body>
 </html>

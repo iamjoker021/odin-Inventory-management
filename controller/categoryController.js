@@ -5,6 +5,10 @@ const getAllCategory = async (req, res) => {
     res.render('index', { categoryList: categories });
 }
 
+const addCategoryForm = (req, res) => {
+    res.render('add-category');
+}
+
 const createCategory = async (req, res) => {
     const { 'categroy-name': newCategory } = req.body;
     await categoryModel.addNewCategory(newCategory);
@@ -27,5 +31,6 @@ module.exports = {
     getAllCategory,
     createCategory,
     editCategory,
-    deleteCategory
+    deleteCategory,
+    addCategoryForm
 }

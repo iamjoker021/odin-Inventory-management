@@ -5,4 +5,7 @@ const categoryRouter = Router();
 
 categoryRouter.get('/', categoryController.getAllCategory);
 
+categoryRouter.get('/add-category', categoryController.addCategoryForm);
+categoryRouter.post('/add-category', categoryController.createCategory);
+
 module.exports = categoryRouter;
