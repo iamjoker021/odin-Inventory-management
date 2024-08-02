@@ -10,10 +10,10 @@
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/add-item">Add New Item</a></li>
+            <li><a href="/category/<%= category.id %>/add-item">Add New Item</a></li>
         </ul>
     </nav>
-    <h2><%= category %></h2>
+    <h2><%= category.name %></h2>
     <ul>
         <% for (let i=0; i<itemList.length; i++) { %>
             <li>

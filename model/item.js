@@ -5,6 +5,11 @@ const getAllItemByCategory = async (categoryId) => {
     return rows;
 }
 
+const addNewItem = async (itemName, price, categoryId) => {
+    await pool.query('INSERT INTO item (name, price, category_id) VALUES ($1, $2, $3)', [itemName, price, categoryId])
+}
+
 module.exports = {
     getAllItemByCategory,
+    addNewItem,
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODIN | Inventory Management App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Inventory Management App</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+    <form action="/category/<%= category.id %>/add-item" method="POST">
+        <label for="item-name">Item Name: </label>
+        <input type="text" name="item-name" id="item-name">
+        <br>
+        <label for="item-price">Item Price: </label>
+        <input type="number" name="item-price" id="item-price" step="0.01">
+        <br>
+        <button type="Sumbit">Add New Item</button>
+    </form>
+</body>
+</html>

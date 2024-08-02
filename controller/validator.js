@@ -24,24 +24,45 @@ const categoryDeleteValidation = [
         if(await isCategroyContainItems(category)) {
             throw new Error ('Category should be Empty to delete');
         }
+        else {
+            return true;
+        }
     })
 ]
 
-const validate = async (req, res, next) => {
-    const errors = await validationResult(req)
+const itemValidation = [
+    body('item-name')
+    .trim()
+    .notEmpty()
+    .withMessage('Item Name should not be empty')
+    .escape(),
+    body('item-price')
+    .trim()
+    .notEmpty()
+    .withMessage('Price should be present')
+    .escape()
+    .custom(price => {
+        if (!(parseFloat(price) > 0)) {
+            throw new Error('Price should be number and should be greater than 0');
+        }
+        else {
+            return true;
+        }
+    }),
+]
+
+const validate = (req, res, next) => {
+    const errors = validationResult(req)
     if (errors.isEmpty()) {
       return next()
     }
-    const extractedErrors = []
-    errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
   
-    return res.status(422).json({
-      errors: extractedErrors,
-    })
+    return res.status(422).json(errors)
 }
 
 module.exports = {
     categoryNameValidation,
     categoryDeleteValidation,
+    itemValidation,
     validate
 }
