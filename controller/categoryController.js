@@ -2,7 +2,7 @@ const categoryModel = require('../model/category')
 
 const getAllCategory = async (req, res) => {
     const categories = await categoryModel.getAllCategory();
-    res.send(categories);
+    res.render('index', { categoryList: categories });
 }
 
 const createCategory = async (req, res) => {
