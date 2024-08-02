@@ -5,6 +5,11 @@ const getAllCategory = async () => {
     return rows;
 }
 
+const isCategoryNameAlreadyPresent = async (categoryName) => {
+    const { rows } = await pool.query('SELECT 1 FROM category where name ilike $1;', [categoryName]);
+    return rows.length > 0;
+}
+
 const addNewCategory = async (categoryName) => {
     await pool.query('INSERT INTO category (name) VALUES ($1)', [categoryName])
 }
@@ -21,5 +26,6 @@ module.exports = {
     getAllCategory,
     addNewCategory,
     updateCategroy,
-    deleteCategory
+    deleteCategory,
+    isCategoryNameAlreadyPresent
 }
